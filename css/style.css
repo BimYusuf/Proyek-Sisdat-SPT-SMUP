@@ -1,0 +1,498 @@
+/* Fonts Google  */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Roboto+Serif:opsz@8..144&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* initial settings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* initial settings end */
+
+
+.shaded-background {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    height: fit-content; /* Full viewport height */
+    background: url('../assets/dec_1.jpg');
+    background-size:50%; /* Ensure the background image covers the entire element */
+    background-repeat: repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+}
+.shaded-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ffe9bdd9; /* Semi-transparent color layer */
+    pointer-events: none; /* Ensure the pseudo-element doesn't interfere with mouse events */
+}
+
+.split-container {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    z-index: 1;
+}
+
+.login-container{
+    z-index: 1;
+}
+
+.banner_left {
+    width: 520px;
+    height: 415px;
+}
+
+.banner_right {
+    width: 322px;
+    height: 415px;
+}
+
+.banner_left object, .banner_right object {
+    height: 100%;
+    width: 100%;
+}
+
+.login-box{
+    width: 300px;
+    height: 415px;
+    background-color: #FFC289;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 27px;
+    font-family: "Roboto", sans-serif;
+}
+
+.login-box p{
+    font-size: 13px;
+}
+
+.login-box input, .login-box button{
+    width: 100%;
+}
+
+.login-box #capthca{
+    width: 100%;
+    height: 55px;
+    background-color: rgb(248, 248, 248);
+}
+
+.login-box input {
+    height: 40px;
+    border: 1px solid black;
+    padding: 10px;
+}
+.login-box input#capthca_input{height: 30px;}
+.login-box button[type="submit"] {
+    height: 24;
+    padding: 3px;
+    background-color: #FF3535;
+    box-shadow: -2px 4px 2px rgba(128, 128, 128, 0.658);
+    border: none;
+    font-weight: bolder;
+    color: white;
+}
+
+.login-box button[type="submit"]:hover{
+    background-color: #d82727;
+}
+
+.signin-box {
+    width: 600px;
+    height: 415px;
+    background-color: #FFC289;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 27px;
+    font-family: "Roboto", sans-serif;
+}
+
+.input-row{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content:stretch;
+    align-items: center;
+}
+.input-box{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    margin-right: 40px;
+}
+
+.input-signin{
+    width: 243px;
+    height: 28px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.signin-box select.input-signin{
+    font-size: 12px;
+}
+
+select.input-signin{
+    padding: 0;
+}
+
+.input-signin.long{
+    width: 526px;
+}
+.input-row label{
+    font-size: 12px;
+}
+
+.daftar-submit{
+    padding: 5px 20px;
+    border: none;
+    background-color: #009ee2;
+    color: white;
+    box-shadow: -2px 4px 2px #808080ab;
+}
+
+.daftar-submit:hover{
+    background-color: #007db3;
+}
+
+.input-row.jus-right{
+    justify-content: flex-end;
+    margin-right: 40px;
+}
+
+
+/* Dashboard */
+
+.singly-container{
+    width: 1180px;
+    height: fit-content;
+    margin-top: 100px;
+    padding: 16px;
+    background-color: #D9D9D9;
+    font-family: "Roboto", sans-serif;
+    z-index: 1;
+}
+
+.singly-container h1{
+    font-size: 24px;
+}
+
+.white-container{
+    width: 100%;
+    padding: 20px;
+    background-color: #FBFBFB;
+    margin-bottom: 16px;
+}
+
+.row-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.foto-profil{
+    width: 125px;
+    height: 172px;
+    margin: auto 0;
+    background-color: #D9D9D9;
+}
+
+#enroll-aktif-container{
+    height: 255px;
+}
+
+.table-template td{
+    padding: 4px 10px 4px 0;
+}
+
+.tabel-row{
+    width: 100%;
+    height: 30px;
+    margin-top: 4px;
+    background-color: #F0EEEE;
+    border: 2px solid #FBFBFB;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.tabel-row.head span{
+    font-weight: 600;
+    text-align: center;
+}
+
+.tabel-row.head span {
+    border-right: 2px solid #80808052;
+}
+.tabel-row span:nth-child(1){width: 48px;}
+.tabel-row span:nth-child(2){width: 200px;}
+.tabel-row span:nth-child(3){width: 200px;}
+.tabel-row span:nth-child(4){width: 155px;}
+.tabel-row span:nth-child(5){width: 170px;}
+.tabel-row span:nth-child(6){width: 100px;}
+.tabel-row span:nth-child(7){width: 100px;}
+
+.blue-button{
+    padding: 2px 20px;
+    color: white;
+    background-color: #0088C2;
+    border-radius: 5px;
+    box-shadow: 0 4px 4px #00000040;
+    text-decoration: none;
+}
+.red-button{
+    padding: 2px 20px;
+    color: white;
+    background-color: #C20000;
+    border-radius: 5px;
+    box-shadow: 0 4px 4px #00000040;
+    text-decoration: none;
+}
+
+.tabel-row a:hover{
+    filter: brightness(0.75);
+}
+
+#jalur-tersedia-container{
+    height: 400px;
+}
+
+
+
+footer{
+    margin-top: 100px;
+    background-color: #444444;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    color: white;
+    z-index: 1;
+    font-family: "Roboto", sans-serif;
+}
+
+#nilai-rapor-container table tr td:nth-child(1), 
+#skor-utbk-container table tr td:nth-child(1),
+#data-ujian-container table tr td:nth-child(1),
+#hasil-ujian-container table tr td:nth-child(1){
+    text-align: right;
+    width: 180px;
+}
+
+#submit-jalur button[type="submit"]{
+    padding: 8px 20px;
+    color: white;
+    background-color: #0bc03e;
+    box-shadow: -2px 4px gray;
+    border: none;
+    margin-left: 300px;
+}
+
+#submit-jalur button[type="submit"]:hover{
+    background-color: #099431;
+}
+
+#data-ujian-container table, #data-ujian-container p{
+    margin-left: 20%;
+}
+
+/* asesor login */
+
+.login-box.admin{
+    background-image: url(../assets/banner_3.png);
+    width: 412px;
+    height: 387px;
+    background-size: cover;
+}
+
+.login-box.admin input,
+.login-box.admin button,
+.login-box.admin #capthca{
+    width: 60%;
+}
+
+.login-box.admin h3{
+    color: rgb(255, 166, 0);
+}
+
+#data-asesor-container{
+    height: 130px;
+}
+
+.grid-place{
+    display: grid;
+    grid-template-columns: 40% 1fr; /* 40% for div2 and div4, remaining for div3 */
+    grid-template-rows: auto auto auto auto auto auto auto;
+    gap: 10px;
+}
+
+#data-asesor-container{
+    grid-column: 1 / span 2;
+}
+
+#data-fakultas-container{
+    grid-column: 1;
+}
+
+#prodi-container{
+    grid-column: 2;
+    grid-row: span 2; /* Span div3 over two rows */
+}
+
+#table-jalur-container{
+    grid-column: 1; 
+}
+
+#tambah-data-container{
+    position: relative;
+    margin-top: 50px;
+    grid-column: 1 / span 2
+}
+
+#asesor-tab{
+    grid-column: 1 / span 2;
+    width: 100%;
+}
+
+#asesor-tab button{
+    padding: 10px;
+    width: 180px;
+    background-color: #e0e0e0;
+    border: none;
+    box-shadow: -2px 2px gray;
+    margin-right: 40px;
+}
+
+#asesor-tab button:hover{
+    background-color: #acacac;
+}
+
+#asesor-tab button.tab-active{
+    background-color: #FBFBFB;
+}
+
+.tabel-fakultas .tabel-row {
+    height: 60px;
+}
+
+#data-selector{
+    height: 30px;
+    position: absolute;
+    top: -30px;
+    left: 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+.tabel-fakultas .tabel-row span:nth-child(1){width: 10px;}
+.tabel-fakultas .tabel-row span:nth-child(2){width: 150px;}
+.tabel-fakultas .tabel-row span:nth-child(3){width: 47px;}
+.tabel-fakultas .tabel-row span:nth-child(4){width: fit-content;}
+
+.tabel-jalur .tabel-row span:nth-child(1){
+    padding-left: 10px;
+}
+
+.tabel-prodi .tabel-row span:nth-child(1){width: 10px;}
+.tabel-prodi .tabel-row span:nth-child(2){width: 150px;}
+.tabel-prodi .tabel-row span:nth-child(3){width: 20px;}
+.tabel-prodi .tabel-row span:nth-child(4){width: 80px;}
+.tabel-prodi .tabel-row span:nth-child(5){width: 80px;}
+.tabel-prodi .tabel-row span:nth-child(6){width: 80px;}
+
+#data-selector button{
+    height: 100%;
+    background-color: #FBFBFB;
+    width: 120px;
+    margin: 0;
+    border: none;
+    background-color: #b8b8b8;
+}
+
+#data-selector button.select-active{
+    background-color: #FBFBFB;
+    border: none;
+}
+
+#tambah-data-container form{
+    width: fit-content;
+}
+
+#tambah-data-container form .input-row{
+    margin-top: 20px;
+}
+
+#tambah-data-container form button{
+    margin: 10px;
+    border: none;
+    margin-left: auto;
+    padding: 5px 30px;
+    font-size:medium;
+}
+
+#tambah-data-container form button:hover{
+    filter: brightness(0.8);
+}
+
+#filter-container {
+    grid-column: 1;
+}
+
+#filter-container .input-row{
+    padding: 15px;
+}
+
+#filter-container button{
+    padding: 4px 30px;
+    font-weight: bolder;
+    margin-left: 15px;
+}
+
+#filter-container select {
+    width : 180px;
+}
+
+#filter-container label{
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 90px;
+    font-size: 14px;
+    text-align: right;
+}
+
+#pendaftar-container{
+    grid-column: 1;
+}
+
+
+
+#pendaftar-container .tabel-row span:nth-child(1) {width: 10px;}
+#pendaftar-container .tabel-row span:nth-child(2) {width: 150px;}
+#pendaftar-container .tabel-row span:nth-child(3) {width: 100px;}
+#pendaftar-container .tabel-row span:nth-child(4) {width: 110px;}
+#pendaftar-container .tabel-row span:nth-child(5) {width: 40px;}
+#pendaftar-container .tabel-row span:nth-child(6) {width: 40px;}
+
+#detail-container{
+    grid-column: 2;
+    grid-row: 3 / span 2;
+}
+
+#detail-container tr td:nth-child(1) {
+    width: 120px;
+    text-align: right;
+}
