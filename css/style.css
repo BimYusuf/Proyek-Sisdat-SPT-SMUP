@@ -237,13 +237,22 @@ select.input-signin{
 .tabel-row.head span {
     border-right: 2px solid #80808052;
 }
-.tabel-row span:nth-child(1){width: 48px;}
-.tabel-row span:nth-child(2){width: 200px;}
-.tabel-row span:nth-child(3){width: 200px;}
-.tabel-row span:nth-child(4){width: 155px;}
-.tabel-row span:nth-child(5){width: 170px;}
-.tabel-row span:nth-child(6){width: 100px;}
-.tabel-row span:nth-child(7){width: 100px;}
+
+#enroll-aktif-container .tabel-row span:nth-child(1){width: 48px;}
+#enroll-aktif-container .tabel-row span:nth-child(2){width: 200px;}
+#enroll-aktif-container .tabel-row span:nth-child(3){width: 200px;}
+#enroll-aktif-container .tabel-row span:nth-child(4){width: 155px;}
+#enroll-aktif-container .tabel-row span:nth-child(5){width: 100px;}
+#enroll-aktif-container .tabel-row span:nth-child(6){width: 100px;}
+
+#jalur-tersedia-container .tabel-row span:nth-child(1){width: 48px;}
+#jalur-tersedia-container .tabel-row span:nth-child(2){width: 200px;}
+#jalur-tersedia-container .tabel-row span:nth-child(3){width: 200px;}
+#jalur-tersedia-container .tabel-row span:nth-child(4){width: 155px;}
+#jalur-tersedia-container .tabel-row span:nth-child(5){width: 170px;}
+#jalur-tersedia-container .tabel-row span:nth-child(6){width: 100px;}
+#jalur-tersedia-container .tabel-row span:nth-child(7){width: 100px;}
+
 
 .blue-button{
     padding: 2px 20px;
@@ -344,6 +353,7 @@ footer{
 }
 
 #data-fakultas-container{
+    min-height: 250px;
     grid-column: 1;
 }
 
@@ -353,6 +363,7 @@ footer{
 }
 
 #table-jalur-container{
+    min-height: 250px;
     grid-column: 1; 
 }
 
@@ -405,11 +416,17 @@ footer{
 
 .tabel-jalur .tabel-row span:nth-child(1){
     padding-left: 10px;
+    text-align: left;
 }
+
+.tabel-jalur .tabel-row span:nth-child(1){width: 10px;}
+.tabel-jalur .tabel-row span:nth-child(2){width: 100px;}
+.tabel-jalur .tabel-row span:nth-child(3){width: 120px;}
+.tabel-jalur .tabel-row span:nth-child(4){width: 40px;}
 
 .tabel-prodi .tabel-row span:nth-child(1){width: 10px;}
 .tabel-prodi .tabel-row span:nth-child(2){width: 150px;}
-.tabel-prodi .tabel-row span:nth-child(3){width: 20px;}
+.tabel-prodi .tabel-row span:nth-child(3){width: 80px;}
 .tabel-prodi .tabel-row span:nth-child(4){width: 80px;}
 .tabel-prodi .tabel-row span:nth-child(5){width: 80px;}
 .tabel-prodi .tabel-row span:nth-child(6){width: 80px;}
@@ -450,6 +467,7 @@ footer{
 
 #filter-container {
     grid-column: 1;
+    max-height: 270px;
 }
 
 #filter-container .input-row{
@@ -475,10 +493,9 @@ footer{
 }
 
 #pendaftar-container{
+    min-height: 560px;
     grid-column: 1;
 }
-
-
 
 #pendaftar-container .tabel-row span:nth-child(1) {width: 10px;}
 #pendaftar-container .tabel-row span:nth-child(2) {width: 150px;}
@@ -489,7 +506,7 @@ footer{
 
 #detail-container{
     grid-column: 2;
-    grid-row: 3 / span 2;
+    grid-row: 3 / span 3;
 }
 
 #detail-container tr td:nth-child(1) {

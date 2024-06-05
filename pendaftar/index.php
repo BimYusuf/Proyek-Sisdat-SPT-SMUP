@@ -2,17 +2,22 @@
 session_start();
 require_once '../db_connect.php';
 
+// conn()->query("DROP TABLE enroll");
+
 // cek login session
 if (!isset($_SESSION['email'])) {
     header("Location: ../login.php");
     exit();
 }
 
-// query data pendaftar
-$result = conn()->query("SELECT * FROM pendaftar WHERE id_pendaftar = '".$_SESSION['email']."'"); 
-$data_pendaftar = $result->fetch_assoc();
-//query 
+//query jalur
 $jalur = conn()->query("SELECT * FROM jalur");
+
+// enroll aktif
+$enroll = conn()->query("SELECT jalur.nama, jalur.jenis, enroll.* FROM enroll
+JOIN pendaftar ON enroll.fk_pendaftar = pendaftar.id_pendaftar
+JOIN jalur ON enroll.fk_jalur = jalur.id_jalur
+WHERE enroll.fk_pendaftar = '".$_SESSION['email']."'");
 
 ?>
 
@@ -28,49 +33,9 @@ $jalur = conn()->query("SELECT * FROM jalur");
 </head>
 <body class="shaded-background">
     <div class="singly-container">
-        <div id="data-diri-pendaftar-container" class="white-container">
-            <h1>DATA CALON MAHASISWA</h1>
-            <hr>
-            <div class="row-container">
-                <table id="data-pendaftar" class="table-template">
-                    <tr>
-                        <td>ID Pendaftar</td>
-                        <td>: <?php echo$data_pendaftar['id_pendaftar']?> </td>
-                    </tr>
-                    <tr>
-                        <td>Nama</td>
-                        <td>: <?php echo$data_pendaftar['nama_pendaftar']?> </td>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td>: <?php echo$data_pendaftar['email']?> </td>
-                    </tr>
-                    <tr>
-                        <td>Tanggal Lahir</td>
-                        <td>: <?php echo$data_pendaftar['tanggal_lahir']?> </td>
-                    </tr>
-                    <tr>
-                        <td>Pendidikan Terakhir</td>
-                        <td>: <?php echo$data_pendaftar['pendidikan_terakhir']?> </td>
-                    </tr>
-                    <tr>
-                        <td>Alamat</td>
-                        <td>: <?php echo$data_pendaftar['alamat']?> </td>
-                    </tr>
-                    <tr>
-                        <td>Status Perkawinan</td>
-                        <td>: <?php echo$data_pendaftar['status_perkawinan']?> </td>
-                    </tr>
-                    <tr>
-                        <td>Telepon</td>
-                        <td>: <?php echo$data_pendaftar['no_telepon']?> </td>
-                    </tr>
-                </table>
-                <div class="foto-profil">
-                    <!-- foto img -->
-                </div>
-            </div>
-        </div>
+
+        <?php include "data-diri-pendaftar-box.php" ?>
+
         <div id="enroll-aktif-container" class="white-container">
             <h1>ENROLL AKTIF</h1>
             <hr>
@@ -80,62 +45,67 @@ $jalur = conn()->query("SELECT * FROM jalur");
                     <span>NAMA JALUR</span>
                     <span>SKEMA</span>
                     <span>STATUS</span>
-                    <span>BERKAS</span>
                     <span>EDIT</span>
                     <span>BATALKAN</span>
                 </div>
-                <div class="tabel-row">
-                    <span>1</span>
-                    <span>UTBK dan Rapor</span>
-                    <span>Seleksi Mandiri</span>
-                    <span>Sedang diperiksa</span>
-                    <span>Lengkap</span>
-                    <span><a class="blue-button" href="">Edit</a></span>
-                    <span><a class="red-button" href="">Batalkan</a></span>
-                </div>
+                <?php 
+                    
+                    $index = 1;
+                    if($enroll->num_rows > 0){
+                        for ($row_no = 0; $row_no < $enroll->num_rows; $row_no++) {
+                            $enroll->data_seek($row_no);
+                            $row = $enroll->fetch_assoc();
+
+                            if($row['lulus'] == null){
+                                $lulus = "belum diumumkan";
+                            }else{
+                                $lulus = ($row['lulus'])? "Lulus" : "Tidak Lulus";
+                            }
+
+                            $view_jalur = [
+                                "111111" => "jalur-rapor.php",
+                                "222222" => "jalur-ujian.php",
+                                "333333" => "jalur-prestasi.php"
+                            ];
+
+                            $link = $view_jalur[$row["fk_jalur"]].'?table='.$row['fk_rapor'].$row['fk_ujian'].$row['fk_prestasi'];
+                            echo '<div class="tabel-row">
+                                <span>'.$index++.'</span>
+                                <span>'.$row['nama'].'</span>
+                                <span>'.$row['jenis'].'</span>
+                                <span>'.$lulus.'</span>
+                                <span><a class="blue-button" href="pendaftar/'.$link.'">Edit</a></span>
+                                <span><a class="red-button" href="delete.php?enroll-id='.$row['fk_jalur'].'">Batalkan</a></span>
+                            </div>';
+                        }
+                    }else{
+                        echo "<h6>No Data (".$enroll->num_rows.")</h6>";
+                    }
+
+                ?>
             </div>
         </div>
         <div id="jalur-tersedia-container" class="white-container">
             <h1>JALUR SELEKSI TERSEDIA</h1>
             <hr>
             <div class="tabel-jalur-tersedia">
-                <div class="tabel-row">
-                    <span>1</span>
-                    <span>UTBK dan Rapor</span>
-                    <span>Seleksi Mandiri</span>
-                    <span>Dibuka:04-04-2024</span>
-                    <span>Ditutup:04-06-2024</span>
-                    <span><a class="red-button" href="">Daftar</a></span>
-                </div>
-                <div class="tabel-row">
-                    <span>2</span>
-                    <span>Ujian SMUP</span>
-                    <span>Seleksi Mandiri</span>
-                    <span>Dibuka:04-04-2024</span>
-                    <span>Ditutup:04-06-2024</span>
-                    <span><a class="red-button" href="">Daftar</a></span>
-                </div>
-                <div class="tabel-row">
-                    <span>3</span>
-                    <span>Prestasi</span>
-                    <span>Seleksi Mandiri</span>
-                    <span>Dibuka:04-04-2024</span>
-                    <span>Ditutup:04-06-2024</span>
-                    <span><a class="red-button" href="">Daftar</a></span>
-                </div>
                 <?php 
-                    for ($row_no = 0; $row_no >= $result->num_rows; $row_no++) {
-                        $result->data_seek($row_no);
-                        $row = $result->fetch_assoc();
-                        $index++;
-                        echo '<div class="tabel-row">
-                            <span>'.$index++.'</span>
-                            <span>'.$row['nama'].'</span>
-                            <span>'.$row['jenis'].'</span>
-                            <span>Dibuka:'.$row['tanggal_dibuka'].'</span>
-                            <span>Ditutup:'.$row['tanggal_dututup'].'</span>
-                            <span><a class="red-button" href="">Daftar</a></span>
-                        </div>';
+                    $index = 1;
+                    if($jalur->num_rows > 0){
+                        for ($row_no = 0; $row_no < $jalur->num_rows; $row_no++) {
+                            $jalur->data_seek($row_no);
+                            $row = $jalur->fetch_assoc();
+                            echo '<div class="tabel-row">
+                                <span>'.$index++.'</span>
+                                <span>'.$row['nama'].'</span>
+                                <span>'.$row['jenis'].'</span>
+                                <span>Dibuka:'.(new DateTime($row['tanggal_dibuka']))->format('Y-m-d').'</span>
+                                <span>Ditutup:'.(new DateTime($row['tanggal_ditutup']))->format('Y-m-d').'</span>
+                                <span><a class="red-button" href="../add_enroll.php?jalur='.$row["id_jalur"].'">Daftar</a></span>
+                            </div>';
+                        }
+                    }else{
+                        echo "<h6>No Data (".$jalur->num_rows.")</h6>";
                     }
 
                 ?>

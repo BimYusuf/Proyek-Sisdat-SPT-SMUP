@@ -1,7 +1,8 @@
 <div id="filter-container" class="white-container">
     <h1>Cari Pendaftar / Filter</h1>
     <hr>
-    <form action="">
+    <form action="/asesor/asesor-dashboard.php" method="GET">
+        <input type="hidden" name="filter" value="true">
         <div class="input-row">
             <input class="input-signin" type="text" name="keyword">
             <button type="submit">Cari</button>
@@ -9,57 +10,61 @@
         <div class="input-row">
             <label for="">Jalur</label>
             <select class="input-signin" name="jalur" id="">
-                <option value="">UTBK & Rapor - Seleksi Mandiri</option>
-                <option value="">Ujian SMUP - Seleksi Mandiri</option>
-                <option value="">Prestasi - Seleksi Mandiri</option>
+                <?php 
+                    for ($row_no = 0; $row_no < $jalur->num_rows; $row_no++) {
+                        $jalur->data_seek($row_no);
+                        $row = $jalur->fetch_assoc();
+                        echo '<option value="'.$row["id_jalur"].'">'.$row["nama"].' - '.$row["jenis"].'</option>';
+                    }
+                ?>
             </select>
             <label for="">Urut Berdasarkan</label>
             <select class="input-signin" name="urut" id="">
-                <option value="">Waktu Enroll</option>
-                <option value="">Prodi</option>
-                <option value="">Fakultas</option>
+                <option value="tanggal_daftar">Waktu Enroll</option>
+                <option value="prodi.nama">Prodi</option>
+                <option value="nama_fak">Fakultas</option>
             </select>
         </div>
         <div class="input-row">
             <label for="">Program Studi</label>
             <select class="input-signin" name="prodi" id="">
-                <option value="">Teknik Informatika</option>
-                <option value="">Teknik Biomedis</option>
+                <?php 
+                    for ($row_no = 0; $row_no < $prodi->num_rows; $row_no++) {
+                        $prodi->data_seek($row_no);
+                        $row = $prodi->fetch_assoc();
+                        echo '<option value="'.$row["id_prodi"].'">'.$row["nama_prodi"].'</option>';
+                    }
+                ?>
             </select>
             <label for="">Desc</label>
-            <input type="radio" name="order" value="desc">
+            <input type="radio" name="arah" value="DESC">
             <label for="">Asc</label>
-            <input type="radio" name="order" value="asc">
+            <input type="radio" name="arah" checked value="ASC">
         </div>
     </form>
 </div>
 
 <div id="pendaftar-container" class="white-container">
     <div class="tabel-pendaftar">
-        <div class="tabel-row">
-            <span>1</span>
-            <span>Bim Yusuf Karang</span>
-            <span>UTBK & Rapor</span>
-            <span>Seleksi Mandiri</span>
-            <span>Sarjana</span>
-            <span><a class="blue-button" href="">Detail</a></span>
-        </div>
-        <div class="tabel-row">
-            <span>2</span>
-            <span>Bim Yusuf Karang</span>
-            <span>UTBK & Rapor</span>
-            <span>Seleksi Mandiri</span>
-            <span>Sarjana</span>
-            <span><a class="blue-button" href="">Detail</a></span>
-        </div>
-        <div class="tabel-row">
-            <span>3</span>
-            <span>Bim Yusuf Karang</span>
-            <span>UTBK & Rapor</span>
-            <span>Seleksi Mandiri</span>
-            <span>Sarjana</span>
-            <span><a class="blue-button" href="">Detail</a></span>
-        </div>
+        <?php 
+            $index = 1;
+            if($pendaftar->num_rows > 0){
+                for ($row_no = 0; $row_no < $pendaftar->num_rows; $row_no++) {
+                    $pendaftar->data_seek($row_no);
+                    $row = $pendaftar->fetch_assoc();
+                    echo '<div class="tabel-row">
+                        <span>'.$index++.'</span>
+                        <span>'.$row['nama_pendaftar'].'</span>
+                        <span>'.$row['nama'].'</span>
+                        <span>'.$row['jenis'].'</span>
+                        <span>'.$row['jenjang'].'</span>
+                        <span><a class="blue-button" href="">Detail</a></span>
+                    </div>';
+                }
+            }else{
+                echo "<h6>No Data (".$pendaftar->num_rows.")</h6>";
+            }
+        ?>
     </div>
 </div>
 <div id="detail-container" class="white-container">
